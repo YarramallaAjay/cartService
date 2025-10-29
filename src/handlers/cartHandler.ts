@@ -1,5 +1,5 @@
-import type { Coupon } from "./types/couponsType.js";
-import type { Product } from "./types/productType.js";
+import type { Coupon } from "../types/couponsType.js";
+import type { Product } from "../types/productType.js";
 
 export const cartHandler=(products:Product[])=>{
 

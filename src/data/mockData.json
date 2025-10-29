@@ -1,0 +1,298 @@
+{
+  "products": [
+    {
+      "id": "PRODUCT_1",
+      "name": "Laptop",
+      "category": "Electronics",
+      "price": 50000,
+      "description": "High-performance laptop"
+    },
+    {
+      "id": "PRODUCT_2",
+      "name": "Wireless Mouse",
+      "category": "Electronics",
+      "price": 500,
+      "description": "Ergonomic wireless mouse"
+    },
+    {
+      "id": "PRODUCT_3",
+      "name": "Keyboard",
+      "category": "Electronics",
+      "price": 1500,
+      "description": "Mechanical gaming keyboard"
+    },
+    {
+      "id": "PRODUCT_4",
+      "name": "Monitor",
+      "category": "Electronics",
+      "price": 15000,
+      "description": "27-inch 4K monitor"
+    },
+    {
+      "id": "PRODUCT_5",
+      "name": "Headphones",
+      "category": "Audio",
+      "price": 3000,
+      "description": "Noise-cancelling headphones"
+    },
+    {
+      "id": "PRODUCT_6",
+      "name": "USB Cable",
+      "category": "Accessories",
+      "price": 200,
+      "description": "USB Type-C cable"
+    },
+    {
+      "id": "PRODUCT_7",
+      "name": "Webcam",
+      "category": "Electronics",
+      "price": 4000,
+      "description": "HD webcam for video calls"
+    },
+    {
+      "id": "PRODUCT_8",
+      "name": "Mouse Pad",
+      "category": "Accessories",
+      "price": 300,
+      "description": "Extended gaming mouse pad"
+    },
+    {
+      "id": "PRODUCT_9",
+      "name": "Smartphone",
+      "category": "Electronics",
+      "price": 30000,
+      "description": "Latest flagship smartphone"
+    },
+    {
+      "id": "PRODUCT_10",
+      "name": "Phone Case",
+      "category": "Accessories",
+      "price": 500,
+      "description": "Protective phone case"
+    }
+  ],
+  "coupons": [
+    {
+      "id": "CART10",
+      "name": "10% off on orders above Rs. 100",
+      "type": "cart-wise",
+      "discount": 10,
+      "description": "Get 10% discount on cart total above Rs. 100",
+      "details": {
+        "threshold": 100,
+        "discount": 10,
+        "discountType": "percentage",
+        "maxDiscount": null
+      },
+      "active": true,
+      "expirationDate": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "CART500",
+      "name": "Rs. 500 flat off on orders above Rs. 5000",
+      "type": "cart-wise",
+      "discount": 500,
+      "description": "Get Rs. 500 flat discount on cart total above Rs. 5000",
+      "details": {
+        "threshold": 5000,
+        "discount": 500,
+        "discountType": "flat"
+      },
+      "active": true,
+      "expirationDate": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "BIGCART20",
+      "name": "20% off on orders above Rs. 10000 (max Rs. 2000)",
+      "type": "cart-wise",
+      "discount": 20,
+      "description": "Get 20% discount with maximum discount capped at Rs. 2000",
+      "details": {
+        "threshold": 10000,
+        "discount": 20,
+        "discountType": "percentage",
+        "maxDiscount": 2000
+      },
+      "active": true,
+      "expirationDate": "2025-06-30T23:59:59Z"
+    },
+    {
+      "id": "LAPTOP20",
+      "name": "20% off on Laptops",
+      "type": "product-wise",
+      "discount": 20,
+      "description": "Get 20% discount on laptop purchases",
+      "details": {
+        "productIds": [1],
+        "discount": 20,
+        "discountType": "percentage"
+      },
+      "active": true,
+      "expirationDate": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "MOUSE100",
+      "name": "Rs. 100 off on Wireless Mouse",
+      "type": "product-wise",
+      "discount": 100,
+      "description": "Get Rs. 100 flat discount on wireless mouse",
+      "details": {
+        "productIds": [2],
+        "discount": 100,
+        "discountType": "flat"
+      },
+      "active": true,
+      "expirationDate": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "ELECTRONICS15",
+      "name": "15% off on Electronics category",
+      "type": "product-wise",
+      "discount": 15,
+      "description": "Get 15% discount on all electronics items",
+      "details": {
+        "category": "Electronics",
+        "discount": 15,
+        "discountType": "percentage",
+        "minQuantity": 1
+      },
+      "active": true,
+      "expirationDate": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "B2G1ACCESSORIES",
+      "name": "Buy 2 Get 1 Free - Accessories",
+      "type": "bxgy",
+      "discount": 0,
+      "description": "Buy 2 accessories, get 1 accessory free (lowest priced)",
+      "details": {
+        "buyProducts": [
+          {
+            "productId": 6,
+            "quantity": 2
+          },
+          {
+            "productId": 8,
+            "quantity": 2
+          },
+          {
+            "productId": 10,
+            "quantity": 2
+          }
+        ],
+        "getProducts": [
+          {
+            "productId": 6,
+            "quantity": 1
+          },
+          {
+            "productId": 8,
+            "quantity": 1
+          },
+          {
+            "productId": 10,
+            "quantity": 1
+          }
+        ],
+        "repetitionLimit": 3
+      },
+      "active": true,
+      "expirationDate": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "B3G1PREMIUM",
+      "name": "Buy 3 Electronics, Get 1 Accessory Free",
+      "type": "bxgy",
+      "discount": 0,
+      "description": "Buy 3 items from Electronics, get 1 accessory item free",
+      "details": {
+        "buyProducts": [
+          {
+            "productId": 1,
+            "quantity": 3
+          },
+          {
+            "productId": 4,
+            "quantity": 3
+          },
+          {
+            "productId": 9,
+            "quantity": 3
+          }
+        ],
+        "getProducts": [
+          {
+            "productId": 6,
+            "quantity": 1
+          },
+          {
+            "productId": 8,
+            "quantity": 1
+          }
+        ],
+        "repetitionLimit": 2
+      },
+      "active": true,
+      "expirationDate": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "B2G1KEYBOARD",
+      "name": "Buy 2 Mice/Keyboards, Get 1 Mouse Pad Free",
+      "type": "bxgy",
+      "discount": 0,
+      "description": "Buy 2 input devices, get 1 mouse pad free",
+      "details": {
+        "buyProducts": [
+          {
+            "productId": 2,
+            "quantity": 2
+          },
+          {
+            "productId": 3,
+            "quantity": 2
+          }
+        ],
+        "getProducts": [
+          {
+            "productId": 8,
+            "quantity": 1
+          }
+        ],
+        "repetitionLimit": 5
+      },
+      "active": true,
+      "expirationDate": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "EXPIRED10",
+      "name": "Expired 10% Cart Discount",
+      "type": "cart-wise",
+      "discount": 10,
+      "description": "This coupon has expired",
+      "details": {
+        "threshold": 1000,
+        "discount": 10,
+        "discountType": "percentage"
+      },
+      "active": false,
+      "expirationDate": "2024-12-31T23:59:59Z"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-10-29",
+    "description": "Mock data for Monk Commerce Coupon Management System",
+    "notes": [
+      "All prices are in Indian Rupees (Rs.)",
+      "Product IDs are unique integers",
+      "Coupon IDs are unique strings for easier identification",
+      "BxGy deals calculate free items based on lowest price in 'get' array",
+      "Repetition limit defines maximum times a BxGy coupon can be applied",
+      "Cart-wise thresholds are checked before discount application",
+      "Product-wise coupons can target specific products or entire categories"
+    ]
+  }
+}
+
+
+
