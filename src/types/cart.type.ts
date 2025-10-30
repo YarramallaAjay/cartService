@@ -1,8 +1,8 @@
-import type { Product } from "./product.type.js";
+import type { CartItem, Product } from "./product.type.js";
 
 export type Cart={
     id:string;
-    items:Product[];
+    items:CartItem[];
     totalAmount:number;
     discountedAmount:number;
     subTotal:number;
