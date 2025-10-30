@@ -5,8 +5,11 @@ const app:ExpressApp=Express()
 
 WarmUp()
 
-app.post("/coupons",async(req,res)=>{
 
+app.post("/coupons",async(req,res)=>{
+    const data=await req.body
+
+    
 })
 app.get("/coupons",async(req,res)=>{
 

@@ -6,7 +6,7 @@ async function WarmpUp(){
 
     let redisClient:Redis;
 
-    const mockData=await readFile("../data/mockData.json",'utf-8')
+    const mockData=await readFile("./src/data/mockData.json",'utf-8')
 
 
     async function startRedis(){
@@ -38,16 +38,19 @@ async function WarmpUp(){
         const data_to_be_load=JSON.parse(mockData)
         if(data_to_be_load.products){
             for(const product of data_to_be_load.products){
+                console.log(product)
                 await redisClient.set(product.id, JSON.stringify(product))
             }
         }
         if(data_to_be_load.coupons){
-            for(const coupon of data_to_be_load.products){
+            for(const coupon of data_to_be_load.coupons){
+                console.log(coupon)
                 await redisClient.set(coupon.id, JSON.stringify(coupon))
             }
         }
-       
 
+        console.log(await redisClient.get("PRODUCT_2"))
+       
     }
 
 
