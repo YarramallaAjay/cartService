@@ -2,7 +2,7 @@
 import { readFile } from 'fs/promises';
 import { Redis } from 'ioredis'
 
-async function WarmpUp(){
+async function StartUpInstance(){
 
     let redisClient:Redis;
 
@@ -49,14 +49,36 @@ async function WarmpUp(){
             }
         }
 
-        console.log(await redisClient.get("PRODUCT_2"))
+        console.log(await redisClient.keys("*"))
        
     }
 
 
-    startRedis()
+    async function getIntance(type:"Redis"){
+        switch(type){
+            case "Redis":
+                return redisClient;
+            default:
+                return null;
+        }
+    }
 
+    async function startAll(type:"Redis"|"MongoDB") {
+        switch(type){
+            case "Redis":
+                return await startRedis();
+            // case "MongoDB":
+            //     return await startMongoDB(); //need to implement
+            default:
+                return null;
+        }
+    }
+
+    return {startAll,
+        startRedis,
+        getIntance
+    }
 }
 
-export default WarmpUp
+export default StartUpInstance;
 

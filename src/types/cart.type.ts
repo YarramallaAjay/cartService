@@ -1,9 +1,9 @@
 import type { CartItem, Product } from "./product.type.js";
 
 export type Cart={
-    id:string;
+    id?:string | undefined;
     items:CartItem[];
     totalAmount:number;
-    discountedAmount:number;
-    subTotal:number;
+    discountedAmount?:number | undefined;
+    subTotal?:number | undefined;
 }
