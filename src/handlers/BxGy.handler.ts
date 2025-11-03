@@ -9,10 +9,8 @@ export class BxGyHandler implements CouponStrategy{
     }
 
     private calculateBxGyParams(cart: Cart, conditions: BxGyConditions) {
-        // Calculate total required "buy" quantity
         const requiredBuyQuantity = conditions.buyProducts.reduce((sum, p) => sum + p.quantity, 0);
 
-        // Count how many "buy" products are in the cart
         let totalBuyQuantityInCart = 0;
         for (const buyProduct of conditions.buyProducts) {
             const cartItem = cart.items.find(item => item.product_id === buyProduct.productId);
@@ -21,11 +19,9 @@ export class BxGyHandler implements CouponStrategy{
             }
         }
 
-        // Calculate how many times we can apply this deal
         const maxPossibleRepetitions = Math.floor(totalBuyQuantityInCart / requiredBuyQuantity);
         const actualRepetitions = Math.min(maxPossibleRepetitions, conditions.repetitionLimit);
 
-        // Calculate required "get" quantity per repetition
         const requiredGetQuantity = conditions.getProducts.reduce((sum, p) => sum + p.quantity, 0);
 
         return {
@@ -47,11 +43,9 @@ export class BxGyHandler implements CouponStrategy{
             const conditions = coupon.conditions as BxGyConditions;
             const params = this.calculateBxGyParams(cart, conditions);
 
-            // Check if we have enough "buy" products
             if (params.totalBuyQuantityInCart < params.requiredBuyQuantity) continue;
             if (params.actualRepetitions === 0) continue;
 
-            // Check if we have "get" products in cart to make free
             let totalGetQuantityInCart = 0;
             for (const getProduct of conditions.getProducts) {
                 const cartItem = cart.items.find(item => item.product_id === getProduct.productId);
@@ -60,7 +54,6 @@ export class BxGyHandler implements CouponStrategy{
                 }
             }
 
-            // We can only give free what's available in the cart
             const freeQuantity = Math.min(totalGetQuantityInCart, params.actualRepetitions * params.requiredGetQuantity);
             if (freeQuantity === 0) continue;
 
@@ -83,7 +76,6 @@ export class BxGyHandler implements CouponStrategy{
 
         if (params.actualRepetitions === 0) return 0;
 
-        // Calculate discount based on "get" products in cart
         let totalDiscount = 0;
         let remainingFreeQuantity = params.actualRepetitions * params.requiredGetQuantity;
 
@@ -107,7 +99,6 @@ export class BxGyHandler implements CouponStrategy{
 
         if (params.actualRepetitions === 0) return cart;
 
-        // Apply discount to "get" products
         let totalDiscount = 0;
         let remainingFreeQuantity = params.actualRepetitions * params.requiredGetQuantity;
 

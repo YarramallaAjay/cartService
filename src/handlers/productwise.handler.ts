@@ -19,7 +19,6 @@ export class ProductWiseHandler implements CouponStrategy{
         for (const coupon of coupons) {
             const conditions = coupon.conditions as ProductWiseConditions;
 
-            // Check if any applicable products are in the cart
             let hasApplicableProducts = false;
             let totalQuantityOfApplicableProducts = 0;
 
@@ -27,7 +26,11 @@ export class ProductWiseHandler implements CouponStrategy{
                 const isProductMatch = conditions.productIds &&
                                      conditions.productIds.includes(item.product_id);
 
-                if (isProductMatch) {
+                const isCategoryMatch = conditions.categories &&
+                                      item.category &&
+                                      conditions.categories.includes(item.category);
+
+                if (isProductMatch || isCategoryMatch) {
                     hasApplicableProducts = true;
                     totalQuantityOfApplicableProducts += item.quantity;
                 }
@@ -35,7 +38,6 @@ export class ProductWiseHandler implements CouponStrategy{
 
             if (!hasApplicableProducts) continue;
 
-            // Check minimum quantity requirement
             if (conditions.minQuantity &&
                 totalQuantityOfApplicableProducts < conditions.minQuantity) {
                 continue;
@@ -64,7 +66,11 @@ export class ProductWiseHandler implements CouponStrategy{
             const isProductMatch = conditions.productIds &&
                                  conditions.productIds.includes(item.product_id);
 
-            if (!isProductMatch) continue;
+            const isCategoryMatch = conditions.categories &&
+                                  item.category &&
+                                  conditions.categories.includes(item.category);
+
+            if (!isProductMatch && !isCategoryMatch) continue;
 
             const itemTotal = item.price * item.quantity;
 
@@ -93,7 +99,11 @@ export class ProductWiseHandler implements CouponStrategy{
             const isProductMatch = conditions.productIds &&
                                  conditions.productIds.includes(item.product_id);
 
-            if (!isProductMatch) continue;
+            const isCategoryMatch = conditions.categories &&
+                                  item.category &&
+                                  conditions.categories.includes(item.category);
+
+            if (!isProductMatch && !isCategoryMatch) continue;
 
             const itemTotal = item.price * item.quantity;
             let itemDiscount = 0;

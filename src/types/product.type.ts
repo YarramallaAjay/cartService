@@ -9,13 +9,14 @@ export type Product={
 export type CartItem = {
     product_id: string;
     quantity: number;
-    price: number;           
-    
-    subtotal?: number;       
-    discount?: number;       
-    total_discount?: number; 
-    final_price?: number;    
-    
+    price: number;
+    category?: string;
+
+    subtotal?: number;
+    discount?: number;
+    total_discount?: number;
+    final_price?: number;
+
     isFree?: boolean;
     freeQuantity?: number;
     appliedCouponIds?: string[];

@@ -1,5 +1,5 @@
 import type { Cart } from "../types/cart.type.js";
-import type { ApplicableCoupons, CartWiseConditions, Coupon, CouponConditions, DiscountDetails } from "../types/coupon.type.js";
+import type { ApplicableCoupons, CartWiseConditions, Coupon } from "../types/coupon.type.js";
 import type { CouponStrategy } from "./couponInterface.js";
 
 export class CartWiseHandler implements CouponStrategy{
@@ -41,18 +41,18 @@ export class CartWiseHandler implements CouponStrategy{
         const couponDiscount=coupon.discountDetails
         let discount=0;
         if(couponDiscount.type==='percentage'){
-            const calculatedDiscount=Math.floor(cart.totalAmount/100)
+            const calculatedDiscount=Math.floor(cart.totalAmount * couponDiscount.value / 100)
             discount= couponDiscount.maxDiscount?Math.min(couponDiscount.maxDiscount,calculatedDiscount):calculatedDiscount
-            
         }
         if(couponDiscount.type==='fixed'){
             discount= Math.floor(couponDiscount.value);
+            discount = Math.min(discount, cart.totalAmount);
         }
         return discount;
-
     }
+
     applyDiscount(cart: Cart, coupon: Coupon): Cart {
-        const discount = this.calculateDiscount(cart, coupon);  // DRY principle
+        const discount = this.calculateDiscount(cart, coupon);
         cart.discountedAmount = discount;
         cart.subTotal = cart.totalAmount - discount;
         return cart;
